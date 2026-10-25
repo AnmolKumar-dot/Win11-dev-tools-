@@ -64,8 +64,9 @@ jobs:
           [built-in options]
           # Safe tuning for the Snapdragon 712 (Cortex-A75 / A55 class cores).
           # -mtune only changes scheduling; it never adds instructions your CPU might lack.
+          # -Wno-c++11-narrowing: clang treats Mesa's size_t -> uint32_t initializers as errors.
           c_args = ['-mtune=cortex-a75']
-          cpp_args = ['-mtune=cortex-a75']
+          cpp_args = ['-mtune=cortex-a75', '-Wno-c++11-narrowing']
           CROSS
           sed -i 's/^          //' android-aarch64.txt
 
